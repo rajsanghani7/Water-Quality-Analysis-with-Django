@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Water Quality Prediction</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}" />
+
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"
+        type="text/css" />
+
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"> -->
+
+    <!-- Bootstrap -->
+	<!-- <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" /> -->
+
+	<!-- Custom form stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/form-style.css' %}" />
+
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container"><a class="navbar-brand" style="font-size: 150%;"><b>Water Quality Prediction</b></a>
+            <div class="collapse navbar-collapse" id="globalNavbar">
+                <ul class="navbar-nav mr-auto order-1"></ul>
+                <ul class="navbar-nav d-none d-lg-flex ml-2 order-3">
+                    <li class="nav-item"><a class="btn" href="#home"><b>Home</b></a>
+                    </li>
+                    <li class="nav-item"><a class="btn" href="#predict"><b>Predict</b></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Masthead -->
+    <header class="masthead" id="home">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <div class="text-center text-white">
+                        <!-- Page heading-->
+                        <p style="font-size: 500%; padding-top: 3.5cm;">Join Our <b>Water Club!</b></p>
+                        <img src="http://webdesign-finder.com/aquareal/wp-content/uploads/2019/06/heading_wave.png"
+                            alt="" data-ww="['150px','150px','150px','150px']" data-hh="['13px','13px','13px','13px']"
+                            width="150" height="13" data-no-retina=""
+                            style="width: 200px; height: 13px; transition: none 0s ease 0s; text-align: inherit; line-height: 0px; border-width: 0px; margin: 0px; padding: 0px; letter-spacing: 0px; font-weight: 300; font-size: 16px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Icons Grid -->
+    <section class="features-icons bg-light text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                        <div class="features-icons-icon d-flex"><i class="bi-window m-auto text-primary"></i></div>
+                        <h3>Enter Data</h3>
+                        <p class="lead mb-0">Enter the values of the factors that affect the quality of the water</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                        <div class="features-icons-icon d-flex"><i class="bi-layers m-auto text-primary"></i></div>
+                        <h3>Quality Prediction</h3>
+                        <p class="lead mb-0">Model will take the input values and predict the quality of the water</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                        <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-primary"></i></div>
+                        <h3>Result</h3>
+                        <p class="lead mb-0">Will give the result weather water is drinkable or not</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form -->
+    <div id="predict" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row mt-5">
+					<div class="col-md-8">
+						<div class="predict-form">
+							<form method="POST" action="{% url 'index' %}">
+								{% csrf_token %}
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="form-group">
+											<span class="form-label">ph</span>
+                                        	<input type="number" step="any" min="0" max="100000" class="form-control" name="ph" required>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group">
+											<span class="form-label">Hardness</span>
+                                        	<input type="number" step="any" min="0" max="100000" class="form-control" name="hardness" required>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group">
+											<span class="form-label">Solids</span>
+                                        	<input type="number" step="any" min="0" max="100000" class="form-control" name="solids" required>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<span class="form-label">Chloramines</span>
+                                        	<input type="number" step="any" min="0" max="100000" class="form-control" name="chloramines" required>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<span class="form-label">Sulfate</span>
+                                        	<input type="number" step="any" min="0" max="100000" class="form-control" name="sulfate" required>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<span class="form-label">Conductivity</span>
+                                        	<input type="number" step="any" min="0" max="100000" class="form-control" name="conductivity" required>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<span class="form-label">Organic Carbon</span>
+                                        	<input type="number" step="any" min="0" max="100000" class="form-control" name="carbon" required>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<span class="form-label">Trihalomethanes</span>
+                                        	<input type="number" step="any" min="0" max="100000" class="form-control" name="trihalomethanes" required>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<span class="form-label">Turbidity</span>
+                                        	<input type="number" step="any" min="0" max="100000" class="form-control" name="turbidity" required>
+										</div>
+									</div>
+								</div>
+								
+								<div class="form-btn">
+									<button class="submit-btn">Check Quality</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="predict-cta m-5">
+							<lottie-player src="https://assets10.lottiefiles.com/packages/lf20_4a1yauyf.json"background="transparent"
+                                speed="1"  style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="{% static 'js/scripts.js' %}"></script>
+
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<script>
+		
+        window.onload = function exampleFunction() {
+              
+			if ({{status}} == -1) {
+				Swal.fire({
+					html: '<div class="m-5"><center><lottie-player id="alis" src="https://assets9.lottiefiles.com/packages/lf20_uv0rau2m.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player></center></div>',
+					confirmButtonText: 'This water is drinkable🙂' 
+				})
+				document.getElementById("status").src = "https://di5qs4dv32t01.cloudfront.net/wp-content/uploads/2022/01/Missing-woman-software-employee-found-dead-in-Vijayawada.jpg";
+			}
+
+			if ({{status}} == 1) {
+				Swal.fire({
+				html: '<div class="m-5"><center><lottie-player id="alis" src="https://assets5.lottiefiles.com/packages/lf20_qvb1x1kr.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player></center></div>',
+				confirmButtonText: 'This is unsafe water🤮'
+				})
+				document.getElementById("status").src = "https://memegenerator.net/img/instances/60839615.jpg";
+			}
+
+        }
+    </script>
+
+</body>
+</html>
